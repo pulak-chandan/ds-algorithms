@@ -1,4 +1,5 @@
 # Recursive
+import queue
 class Node:
     def __init__(self, data):
         self.data = data
@@ -85,3 +86,28 @@ class Tree:
         if node.rightChild:
             self.traversePostOrderRec(node.rightChild, tList)
         tList.append(node.data)
+
+    def traverseLevelOrder(self):
+        tList = []
+        q = queue.Queue()
+        q.put(self.root)
+        while not q.empty():
+            temp = q.get()
+            tList.append(temp.data)
+            if temp.leftChild:
+                q.put(temp.leftChild)
+            if temp.rightChild:
+                q.put(temp.rightChild)
+        return tList
+
+    def search(self, data):
+        if self.root:
+            return self.searchRec(self.root, data)
+
+    def searchRec(self, node, data):
+        if node.data == data:
+            return True
+        if node.leftChild and data < node.data:
+            return self.searchRec(node.leftChild, data)
+        if node.rightChild and data > node.data:
+            return self.searchRec(node.rightChild, data)
