@@ -1,4 +1,4 @@
-import datastructures.bst as bst
+import datastructures.trees.src.bst as bst
 
 
 def getLeafNodes(tree):

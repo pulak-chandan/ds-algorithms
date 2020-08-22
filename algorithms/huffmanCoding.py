@@ -1,6 +1,6 @@
 from collections import Counter
 from queue import PriorityQueue
-import datastructures.bst as bst
+import datastructures.trees.src.bst as bst
 
 
 def optimalTransportCost(msg):
