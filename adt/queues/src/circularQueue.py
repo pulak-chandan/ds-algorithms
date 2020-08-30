@@ -48,13 +48,28 @@ class CircularQueue:
         if not self.isEmpty():
             return self.items[self.front]
 
+    def display(self):
+        if not self.isEmpty():
+            if self.front <= self.rear:
+                for _ in range(self.front, self.rear + 1):
+                    print(self.items[_])
+            else:
+                for _ in range(self.front, self.maxSize):
+                    print(self.items[_])
+                for _ in range(0, self.rear + 1):
+                    print(self.items[_])
+        else:
+            print("Empty queue!")
+
 
 q = CircularQueue(3)
 while True:
-    x = int(input("enqueue --> 1, dequeue --> 2, peek --> 3:"))
+    x = int(input("enqueue --> 1, dequeue --> 2, peek --> 3, display --> 4:"))
     if x == 1:
         q.enqueue(input("Data:"))
     elif x == 2:
         print(q.dequeue(), "dequeued.")
     elif x == 3:
         print(q.peek())
+    elif x == 4:
+        q.display()
