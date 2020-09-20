@@ -111,3 +111,41 @@ class Tree:
             return self.searchRec(node.leftChild, data)
         if node.rightChild and data > node.data:
             return self.searchRec(node.rightChild, data)
+
+    def deleteDataRec(self, node, data):
+        if data < node.data:
+            node.leftChild = self.deleteDataRec(node.leftChild, data)
+        elif data > node.data:
+            node.rightChild = self.deleteDataRec(node.rightChild, data)
+
+        # Base case
+        elif data == node.data:
+            # Case 1
+            if not node.leftChild and not node.rightChild:
+                del node
+                return None
+
+            # case 2
+            elif node.rightChild and not node.leftChild:
+                temp = node.rightChild
+                del node
+                return temp
+
+            # case 2
+            elif node.leftChild and not node.rightChild:
+                temp = node.leftChild
+                del node
+                return temp
+
+            # Case 3
+            elif node.rightChild and node.leftChild:
+                pass
+        return node
+
+
+
+    def deleteData(self, data):
+        if self.root:
+            self.root = self.deleteDataRec(self.root, data)
+
+
