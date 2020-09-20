@@ -1,5 +1,7 @@
 # Recursive
 import queue
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -19,7 +21,7 @@ class Tree:
         else:
             self.insertNode(self.root, data)
 
-    # O(logN), but if tree is balanced it can be reduced to O(N) - AVL, RBT needed
+    # O(logN), but if tree is unbalanced it can be reduced to O(N) - AVL, RBT needed
     def insertNode(self, node, data):
         if data < node.data:
             if not node.leftChild:
@@ -141,8 +143,6 @@ class Tree:
             elif node.rightChild and node.leftChild:
                 pass
         return node
-
-
 
     def deleteData(self, data):
         if self.root:
