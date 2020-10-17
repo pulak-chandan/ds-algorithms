@@ -124,28 +124,52 @@ class Tree:
         elif data == node.data:
             # Case 1
             if not node.leftChild and not node.rightChild:
+                print("Removing a leaf node!")
                 del node
                 return None
 
             # case 2
             elif node.rightChild and not node.leftChild:
+                print("Removing a node with single right child!")
                 temp = node.rightChild
                 del node
                 return temp
 
             # case 2
             elif node.leftChild and not node.rightChild:
+                print("Removing a node with single left child!")
                 temp = node.leftChild
                 del node
                 return temp
 
             # Case 3
             elif node.rightChild and node.leftChild:
-                pass
+                print("Removing a node with both left right children!")
+                predecessor = self.getPredecessor(node.leftChild)
+                node.data = predecessor.data
+                node.leftChild = self.deleteDataRec(node.leftChild, predecessor.data)
+        return node
+
+    def getPredecessor(self, node):
+        while node.rightChild:
+            node = node.rightChild
         return node
 
     def deleteData(self, data):
         if self.root:
             self.root = self.deleteDataRec(self.root, data)
+
+
+'''
+bst = Tree()
+bst.insert(10)
+bst.insert(13)
+bst.insert(5)
+bst.insert(14)
+print(bst.traverseInOrder())
+bst.deleteData(10)
+print(bst.traverseInOrder())
+'''
+
 
 
